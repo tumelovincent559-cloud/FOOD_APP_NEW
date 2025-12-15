@@ -13,25 +13,26 @@ class RecipeList extends StatelessWidget {
         itemCount: sampleRecipes.length,
         itemBuilder: (context, index) {
           final recipe = sampleRecipes[index];
-          return ListTile(
-            leading: Image.asset(recipe.imagePath,
-                width: 50, height: 50, fit: BoxFit.cover),
-            title: Text(recipe.title),
-            subtitle: Text(recipe.description),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => RecipeDetail(
-                    title: recipe.title,
-                    imagePath: recipe.imagePath,
-                    description: recipe.description,
-                    ingredients: recipe.ingredients,
-                    steps: recipe.steps,
+          return Card(
+            margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            child: ListTile(
+              leading: Image.asset(
+                recipe.imagePath,
+                width: 50,
+                height: 50,
+                fit: BoxFit.cover,
+              ),
+              title: Text(recipe.title),
+              subtitle: Text(recipe.description),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => RecipeDetail(recipe: recipe),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           );
         },
       ),
